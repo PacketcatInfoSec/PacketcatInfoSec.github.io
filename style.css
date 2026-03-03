@@ -1,0 +1,102 @@
+body {
+   background-color: #e1e2e3;
+   color:black;
+   text-align:center;
+}
+
+#p-2 {
+    background-color: white;
+    text-align:left;
+    border-radius:5px;
+    padding: 25px;
+    margin: 25px;
+    font-size: 20px;
+}
+
+#button-red {
+    color:red;
+    font-size: 20px;
+}
+
+#button-blue {
+    color:blue;
+    font-size: 20px;
+}
+
+#footer {
+    border: 2px, solid, black;
+    border-radius:5px;
+}
+
+#p-1 {
+    background-color: white;
+    border-radius:5px;
+    text-align: left;
+    padding: 5px;
+    margin: 5px;
+    font-size: 20px;
+}
+
+#p-spacer {
+    font-size: 30px;
+
+}
+
+.paragraph{
+    font-size: 20px;
+}
+
+.packetcat{
+  color: white;
+  background-color: #333;
+  margin: 0;
+  padding: 20px 0;
+  overflow:hidden;
+}
+
+.packetcat h1 {
+  margin-top: 20px; /* Now this margin will safely stay INSIDE the dark gray box */
+  margin-bottom: 20px;
+}
+
+.tab {
+    background-color: #333;
+    width: 100%;
+    max-width: 100%;
+    padding: 10px 0;
+}
+
+.tab-list {
+    list-style: none;
+    width: 100%;
+    max-width: 100%;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+}
+
+.tab-list li {
+    width: 100%;
+    max-width: 100%;
+    margin: 0 15px;
+}
+
+.tab-list a {
+    text-decoration: none;
+    color: white;
+    width: 100%;
+    max-width: 100%;
+    padding: 10px 20px;
+    background-color: #333;
+    border-radius: 5px;
+    transition: background-color 0.3s;
+}
+
+.tab-list a:hover {
+    background-color: #666;
+}
+
+.photo {
+    box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.5);
+}
