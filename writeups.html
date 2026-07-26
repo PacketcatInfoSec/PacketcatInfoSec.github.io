@@ -1,41 +1,81 @@
 <!DOCTYPE html>
 <html lang="en">
-    <head>
-     <meta charset="UTF-8"/>
-        <title>Home Page</title>
-        <link rel="stylesheet" href="style.css">
-    </head>
-    <body>
-      <header class="packetcat">
-        <br>
-        <h1>Packetcat's Website</h1>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Writeups — Packetcat</title>
+<meta name="description" content="Walkthroughs for TryHackMe rooms completed by Packetcat.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=IBM+Plex+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
 
-        <div class="tab">
-          <ul class="tab-list">
-              <li><a href="index.html" class="tab">Home</a></li>
-              <li><a href="about.html" class="tab">About</a></li>
-              <li><a href="writeups.html" class="tab">Writeups</a></li>
-              <li><a href="links.html" class="tab">Extra Links</a></li>
-          </ul>
-        </div>
-      </header>
+<a class="skip" href="#main">Skip to content</a>
 
-  <h1><u>Writeups</u></h1>
+<nav class="tmux" aria-label="Main">
+  <span class="tmux__session">packetcat</span>
+  <ul class="tmux__windows">
+    <li><a href="index.html">1:home</a></li>
+    <li><a href="about.html">2:about</a></li>
+    <li><a href="writeups.html" aria-current="page">3:writeups</a></li>
+    <li><a href="links.html">4:links</a></li>
+  </ul>
+  <span class="tmux__host">kali@rpi5</span>
+</nav>
 
-  <img src="images/writeup.png" alt="writeups" height="15%" width="15%">
+<main id="main">
+  <div class="wrap">
 
-    <p id="p-1">
-      TryHackMe is an online platform for learning and teaching cybersecurity, which is beginner-friendly and versatile in different topics. Try Hack Me (THM) consists of tons of rooms, which are virtual enviornments dedicated to particular cybersecurity topics, with different difficulties. On this page, you can find writeups for TryHackMe rooms that I have created. I hope they help if you get stuck!
-    </p>
+    <section class="block">
+      <p class="eyebrow">3:writeups</p>
+      <div class="head-row">
+        <span class="icon"><img src="images/writeup.png" alt=""></span>
+        <h1 class="h-section" style="font-size:1.9rem;"><span class="mark">##</span> Writeups</h1>
+      </div>
+      <div class="prose">
+        <p>TryHackMe is a beginner-friendly platform for learning cybersecurity across a wide range of topics. It's built out of rooms — virtual environments, each focused on one subject, at a range of difficulties.</p>
+        <p>Below are walkthroughs for rooms I've finished. If you're stuck on one, start here.</p>
+      </div>
+    </section>
 
-    <h2>TryHackMe Rooms</h2>
+    <section class="block">
+      <h2 class="h-section"><span class="mark">##</span> TryHackMe rooms</h2>
+      <div class="cards">
+        <a class="card" href="https://github.com/PacketcatInfoSec/TryHackMeWriteups/blob/main/Bounty-Hacker.md">
+          <span class="card__top">
+            <span class="card__title">Bounty Hacker</span>
+            <span class="card__tag">Easy</span>
+            <span class="card__arrow">&#8599;</span>
+          </span>
+          <p class="card__desc">Full walkthrough: enumeration, gaining a foothold, and privilege escalation to root.</p>
+          <span class="card__url">github.com/PacketcatInfoSec/TryHackMeWriteups</span>
+        </a>
 
-          <ul id="p-2">
-            <a href="https://github.com/PacketcatInfoSec/TryHackMeWriteups/blob/main/Bounty-Hacker.md">
-              <li>Bounty Hacker</li>
-            </a>
+        <p class="empty">&#10095; more rooms in progress — new writeups land here as I clear them.</p>
+      </div>
 
-        </ul>
+      <div class="actions">
+        <a class="btn btn--solid" href="https://github.com/PacketcatInfoSec/TryHackMeWriteups/blob/main/README.md">Browse the full writeups repo</a>
+        <a class="btn" href="https://tryhackme.com/">Try TryHackMe</a>
+      </div>
+    </section>
 
+    <footer class="foot">
+      <span>packetcat</span>
+      <span>&#10095; still learning, writing it all down</span>
+    </footer>
+
+  </div>
+</main>
+
+<div class="status">
+  <span class="status__dot"></span>
+  <span>session: writeups</span>
+  <span class="status__clock" data-clock>--:--:--</span>
+</div>
+
+<script src="script.js"></script>
 </body>
 </html>

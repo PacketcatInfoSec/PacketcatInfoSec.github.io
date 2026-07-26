@@ -1,34 +1,103 @@
 <!DOCTYPE html>
 <html lang="en">
-    <head>
-     <meta charset="UTF-8"/>
-        <title>Home Page</title>
-        <link rel="stylesheet" href="style.css">
-    </head>
-    <body>
-      <header class="packetcat">
-        <br>
-        <h1>Packetcat's Website</h1>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>About — Packetcat</title>
+<meta name="description" content="About Packetcat: technology enthusiast, aspiring cybersecurity analyst, and hands-on problem solver building practical security skills.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=IBM+Plex+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
 
-        <div class="tab">
-          <ul class="tab-list">
-              <li><a href="index.html" class="tab">Home</a></li>
-              <li><a href="about.html" class="tab">About</a></li>
-              <li><a href="writeups.html" class="tab">Writeups</a></li>
-              <li><a href="links.html" class="tab">Extra Links</a></li>
-          </ul>
-        </div>
-      </header>
+<a class="skip" href="#main">Skip to content</a>
 
-    <h1><u>About Me</u></h1>
-    <img src="images/packetcat.jpg" alt="packetcat" height="20%" width="20%" class="photo">
-    <br>
-    <p id=p-1>Hi, I’m Packetcat — a technology enthusiast, aspiring cybersecurity analyst, and hands-on problem solver with a passion for understanding how systems work and how to make them better. I’m currently focused on building practical skills in cybersecurity through labs, certifications, and self-directed projects. My experience spans troubleshooting hardware and software, working with Linux environments, and exploring security tools and techniques in controlled lab settings. I enjoy diving into technical challenges, learning new tools, and turning complex problems into clear solutions.<br> Beyond cybersecurity, I enjoy building things on the web — from small apps to experimental projects — and bringing ideas to life through code and design. I’m especially interested in projects that combine creativity with technology, whether that’s developing useful tools, interactive websites, or digital content. When I’m not working with technology, you’ll usually find me gaming, exploring new tech, or creating content and ideas for future projects. I’m always looking to grow, collaborate, and take on new challenges in the IT and cybersecurity space.</p>
+<nav class="tmux" aria-label="Main">
+  <span class="tmux__session">packetcat</span>
+  <ul class="tmux__windows">
+    <li><a href="index.html">1:home</a></li>
+    <li><a href="about.html" aria-current="page">2:about</a></li>
+    <li><a href="writeups.html">3:writeups</a></li>
+    <li><a href="links.html">4:links</a></li>
+  </ul>
+  <span class="tmux__host">kali@rpi5</span>
+</nav>
 
-    <p id=p-spacer>* * *</p>
+<main id="main">
+  <div class="wrap">
 
-    <img src="images/banner.jpg" alt="banner">
+    <section class="block">
+      <p class="eyebrow">2:about</p>
+      <h1 class="h-section" style="font-size:1.9rem;"><span class="mark">##</span> About me</h1>
+    </section>
 
+    <section class="block bio">
+      <div class="frame bio__portrait">
+        <img src="images/packetcat.jpg" alt="Packetcat">
+        <p class="frame__cap">packetcat.jpg</p>
+      </div>
 
+      <div class="prose">
+        <p class="lede">I'm Packetcat — a technology enthusiast, aspiring cybersecurity analyst, and hands-on problem solver interested in how systems work and how to make them better.</p>
+        <p>Right now I'm building practical security skills through labs, certifications, and self-directed projects. My experience covers troubleshooting hardware and software, working in Linux environments, and exploring security tools and techniques in controlled lab settings. I like technical challenges, learning new tools, and turning complicated problems into clear answers.</p>
+        <p>Outside of security, I build things on the web — small apps, experiments, whatever I'm curious about that week. I'm especially drawn to projects where creativity and technology overlap: useful tools, interactive sites, digital content. When I'm not working with tech, I'm usually gaming, poking at new hardware, or sketching out ideas for the next project.</p>
+        <p>I'm always looking to grow, collaborate, and take on new challenges in IT and cybersecurity.</p>
+
+        <ul class="chips">
+          <li>Linux</li>
+          <li>Kali on Raspberry Pi 5</li>
+          <li>Hardware &amp; software troubleshooting</li>
+          <li>Web app pentesting</li>
+          <li>CTFs</li>
+          <li>Web development</li>
+        </ul>
+      </div>
+    </section>
+
+    <hr class="rule">
+
+    <section class="block frame frame--strip">
+      <img src="images/banner.jpg" alt="Packetcat banner" loading="lazy">
+    </section>
+
+    <section class="block">
+      <h2 class="h-section"><span class="mark">##</span> Get in touch</h2>
+      <div class="cards">
+        <a class="card" href="https://github.com/PacketcatInfoSec">
+          <span class="card__top">
+            <span class="card__title">GitHub</span>
+            <span class="card__arrow">&#8599;</span>
+          </span>
+          <p class="card__desc">Code, projects, and every writeup I've published.</p>
+          <span class="card__url">github.com/PacketcatInfoSec</span>
+        </a>
+        <a class="card" href="https://x.com/PacatInfosec">
+          <span class="card__top">
+            <span class="card__title">X</span>
+            <span class="card__arrow">&#8599;</span>
+          </span>
+          <p class="card__desc">Where I post what I'm working on.</p>
+          <span class="card__url">x.com/PacatInfosec</span>
+        </a>
+      </div>
+    </section>
+
+    <footer class="foot">
+      <span>packetcat</span>
+      <span>&#10095; still learning, writing it all down</span>
+    </footer>
+
+  </div>
+</main>
+
+<div class="status">
+  <span class="status__dot"></span>
+  <span>session: about</span>
+  <span class="status__clock" data-clock>--:--:--</span>
+</div>
+
+<script src="script.js"></script>
 </body>
 </html>

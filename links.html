@@ -1,49 +1,104 @@
 <!DOCTYPE html>
 <html lang="en">
-    <head>
-     <meta charset="UTF-8"/>
-        <title>Home Page</title>
-        <link rel="stylesheet" href="style.css">
-    </head>
-    <body>
-      <header class="packetcat">
-        <br>
-        <h1>Packetcat's Website</h1>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Links — Packetcat</title>
+<meta name="description" content="Useful cybersecurity links, plus where to find Packetcat online.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=IBM+Plex+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
 
-        <div class="tab">
-          <ul class="tab-list">
-              <li><a href="index.html" class="tab">Home</a></li>
-              <li><a href="about.html" class="tab">About</a></li>
-              <li><a href="writeups.html" class="tab">Writeups</a></li>
-              <li><a href="links.html" class="tab">Extra Links</a></li>
-          </ul>
-        </div>
-      </header>
+<a class="skip" href="#main">Skip to content</a>
 
-    <h1><u>Extra Links</u></h1>
-    <img src="images/link.png" alt="link" height="15%" width="15%">
-    <p id="p-1">Please see the links below to access any links that I find interesting!</p>
+<nav class="tmux" aria-label="Main">
+  <span class="tmux__session">packetcat</span>
+  <ul class="tmux__windows">
+    <li><a href="index.html">1:home</a></li>
+    <li><a href="about.html">2:about</a></li>
+    <li><a href="writeups.html">3:writeups</a></li>
+    <li><a href="links.html" aria-current="page">4:links</a></li>
+  </ul>
+  <span class="tmux__host">kali@rpi5</span>
+</nav>
 
-    <p>
-      <ul id="p-2">
-        <p>For anything hacking related: </p>
-        <a href="https://tryhackme.com/">
-          <li>TryHackMe.com</li>
-        </a>
-        <p>Visit my GitHub to check out my code bits: </p>
-        <a href="https://github.com/PacketcatInfoSec">
-          <li>My GitHub</li>
-        </a>
-        <p>Follow me on X to stay up to date: </p>
-        <a href="https://x.com/PacatInfosec">
-          <li>Packetcat X Profile</li>
-        </a>
-        <p>A link to all of my THM room writeups: </p>
-        <a href="https://github.com/PacketcatInfoSec/TryHackMeWriteups/blob/main/README.md">
-          <li ><u>All TryHackMe Rooms Writeups</u></li>
-        </a>
-      </ul>
-    </p>
+<main id="main">
+  <div class="wrap">
 
+    <section class="block">
+      <p class="eyebrow">4:links</p>
+      <div class="head-row">
+        <span class="icon"><img src="images/link.png" alt=""></span>
+        <h1 class="h-section" style="font-size:1.9rem;"><span class="mark">##</span> Extra links</h1>
+      </div>
+      <p class="prose">Things I find useful, and where to find me.</p>
+    </section>
+
+    <section class="block">
+      <h2 class="h-section"><span class="mark">##</span> Learning</h2>
+      <div class="cards">
+        <a class="card" href="https://tryhackme.com/">
+          <span class="card__top">
+            <span class="card__title">TryHackMe</span>
+            <span class="card__tag">Labs</span>
+            <span class="card__arrow">&#8599;</span>
+          </span>
+          <p class="card__desc">Hands-on cybersecurity rooms and CTFs. Where most of my practice happens.</p>
+          <span class="card__url">tryhackme.com</span>
+        </a>
+        <a class="card" href="https://github.com/PacketcatInfoSec/TryHackMeWriteups/blob/main/README.md">
+          <span class="card__top">
+            <span class="card__title">All TryHackMe writeups</span>
+            <span class="card__tag">Repo</span>
+            <span class="card__arrow">&#8599;</span>
+          </span>
+          <p class="card__desc">Every room walkthrough I've published, in one place.</p>
+          <span class="card__url">github.com/PacketcatInfoSec/TryHackMeWriteups</span>
+        </a>
+      </div>
+    </section>
+
+    <section class="block">
+      <h2 class="h-section"><span class="mark">##</span> Find me</h2>
+      <div class="cards">
+        <a class="card" href="https://github.com/PacketcatInfoSec">
+          <span class="card__top">
+            <span class="card__title">GitHub</span>
+            <span class="card__tag">Code</span>
+            <span class="card__arrow">&#8599;</span>
+          </span>
+          <p class="card__desc">Projects, scripts, and code bits I'm working on.</p>
+          <span class="card__url">github.com/PacketcatInfoSec</span>
+        </a>
+        <a class="card" href="https://x.com/PacatInfosec">
+          <span class="card__top">
+            <span class="card__title">X</span>
+            <span class="card__tag">Updates</span>
+            <span class="card__arrow">&#8599;</span>
+          </span>
+          <p class="card__desc">Day-to-day progress and whatever I'm learning this week.</p>
+          <span class="card__url">x.com/PacatInfosec</span>
+        </a>
+      </div>
+    </section>
+
+    <footer class="foot">
+      <span>packetcat</span>
+      <span>&#10095; still learning, writing it all down</span>
+    </footer>
+
+  </div>
+</main>
+
+<div class="status">
+  <span class="status__dot"></span>
+  <span>session: links</span>
+  <span class="status__clock" data-clock>--:--:--</span>
+</div>
+
+<script src="script.js"></script>
 </body>
 </html>

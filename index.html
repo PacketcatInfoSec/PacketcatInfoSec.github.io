@@ -1,62 +1,111 @@
 <!DOCTYPE html>
 <html lang="en">
-    <head>
-     <meta charset="UTF-8"/>
-        <title>Home Page</title>
-        <link rel="stylesheet" href="style.css">
-    </head>
-    <body>
-      <header class="packetcat">
-        <br>
-        <h1>Packetcat's Website</h1>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Packetcat — aspiring red team penetration tester</title>
+<meta name="description" content="Packetcat: computer technician learning web app penetration testing through TryHackMe CTFs, Kali Linux on a Raspberry Pi 5, and hands-on labs.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=IBM+Plex+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
 
-        <div class="tab">
-          <ul class="tab-list">
-              <li><a href="index.html" class="tab">Home</a></li>
-              <li><a href="about.html" class="tab">About</a></li>
-              <li><a href="writeups.html" class="tab">Writeups</a></li>
-              <li><a href="links.html" class="tab">Extra Links</a></li>
-          </ul>
+<a class="skip" href="#main">Skip to content</a>
+
+<!-- Top bar: tmux-style window list. The numbers are window indices. -->
+<nav class="tmux" aria-label="Main">
+  <span class="tmux__session">packetcat</span>
+  <ul class="tmux__windows">
+    <li><a href="index.html" aria-current="page">1:home</a></li>
+    <li><a href="about.html">2:about</a></li>
+    <li><a href="writeups.html">3:writeups</a></li>
+    <li><a href="links.html">4:links</a></li>
+  </ul>
+  <span class="tmux__host">kali@rpi5</span>
+</nav>
+
+<main id="main">
+  <div class="wrap">
+
+    <!-- Hero ------------------------------------------------------------ -->
+    <section class="block term">
+      <div class="term__chrome">
+        <span>●</span>
+        <span>~/packetcat — zsh</span>
+      </div>
+      <div class="term__body">
+        <p class="term__cmd" data-type="whoami --verbose"><span class="p">&#10095;</span><span class="text">whoami --verbose</span><span class="caret"></span></p>
+        <h1 class="term__name">packetcat</h1>
+        <p class="term__role">computer technician &nbsp;/&nbsp; training toward <b>red team</b> penetration testing</p>
+        <p class="term__lede">I break things in labs so I can learn how to defend the real ones. Kali on a Raspberry&nbsp;5, a stack of TryHackMe CTFs, and a habit of writing down everything I figure out.</p>
+        <div class="actions">
+          <a class="btn btn--solid" href="writeups.html">Read my writeups</a>
+          <a class="btn" href="https://github.com/PacketcatInfoSec">GitHub</a>
+          <a class="btn" href="about.html">About me</a>
         </div>
-      </header>
-        <h1><u>Welcome to my site!</u></h1>
-        <img src="images/code.png" alt="code" height="30%" width="50%">
-        <br>
+      </div>
+    </section>
 
-        <p id=p-1>I am a beginner coder/ hacker that is beginning the process of learning and figuring everything out. I learned the basics of HTML in Highschool and I am learning everything about web app pentesting on <a href=www.tryhackme.com>TryHackMe.com</a>. I have learned a lot of things from TryHackMe! One of my favorite "Hacktivities" to do is the CTFs (Capture The Flag). The cool thing about CTFs is, you get to run a virtual machine that you can hack into legally, basically allowing you to simulate being an attacker on a system. I run a distribution of Linux called Kali on a raspberry pi 5 and I use tools that professional hackers use in the real world. THM also offers a more competitive mode of hacking called King of the Hill, which I haven't done, but sounds super fun. If you do decide to try out TryHackMe, please don't hesitate to go to the Writeups tab to find walkthroughs for some of the rooms that I have completed.
-        </p>
+    <div class="block frame frame--wide">
+      <img src="images/code.png" alt="A screen of source code" loading="lazy">
+    </div>
 
-        <p id=p-spacer>* * *</p>
+    <!-- Where I'm learning ---------------------------------------------- -->
+    <section class="block">
+      <h2 class="h-section"><span class="mark">##</span> Where I'm learning</h2>
+      <div class="prose">
+        <p>I picked up the basics of HTML in high school, and I'm now working through web app penetration testing on <a href="https://tryhackme.com/">TryHackMe</a>. It has taught me a lot.</p>
+        <p>My favourite thing on there is the CTFs — Capture The Flag. You spin up a virtual machine you're allowed to attack, which means you get to practise being an attacker legally, on a system built for it. I run Kali Linux on a Raspberry Pi 5 and work with the same tools professionals use in the field.</p>
+        <p>TryHackMe also runs a competitive mode called King of the Hill. I haven't tried it yet, but it sounds like a good time. If you decide to sign up, the <a href="writeups.html">writeups</a> page has walkthroughs for rooms I've already cleared.</p>
+      </div>
+    </section>
 
-        <p id=p-1>My end goal is to become a red team penetration tester. A red team member acts as the attacker in a simulated attack on a system. They take on the role as a bad actor (without malicious intent) to find any holes in an organizations systems and report on their findings to assist the organization in being more secure. On the flip side, a blue team member takes on the role of a defender of an organization. They ensure the CIA (Confidentiality, Integrity, Availibility) triad remains intact. They also make sure the organization remains GRC compliant, as well as watch the network for any suspicious activity. Both of these roles do alot more than I listed above, but I am still learning more about this industry.</p>
+    <!-- Red / blue ------------------------------------------------------- -->
+    <section class="block">
+      <h2 class="h-section"><span class="mark">##</span> Red team or blue team?</h2>
+      <p class="prose muted" style="margin-bottom:22px;">Two sides of the same job. My goal is the red side, but you need to understand both.</p>
 
-        <p class=paragraph> Which would you choose? <br>
-        <button onclick="alert('Good choice, H4ck3r.')" id=button-red>Red</button>
+      <div class="teams" data-teams>
+        <p class="teams__q"><span style="color:var(--green)">&#10095;</span> which would you choose?</p>
+        <div class="teams__opts">
+          <button class="team-btn" type="button" data-value="red" aria-pressed="false">Red</button>
+          <button class="team-btn" type="button" data-value="blue" aria-pressed="false">Blue</button>
+        </div>
+        <div class="teams__out" aria-live="polite">
+          <p class="teams__title" data-team-title>Pick a side</p>
+          <p class="teams__text" data-team-text>Choose Red or Blue to see what the role actually involves day to day.</p>
+        </div>
+      </div>
+    </section>
 
-        <button onclick="alert('Good choice, Defender.')" id=button-blue>Blue</button>
+    <!-- Goals ------------------------------------------------------------ -->
+    <section class="block">
+      <h2 class="h-section"><span class="mark">##</span> Current goals</h2>
+      <p class="prose muted" style="margin-bottom:20px;">I just started a job as a computer technician, so this is what I'm working on right now.</p>
+      <ul class="tasks">
+        <li><span class="box">[ ]</span> Learn SQL</li>
+        <li><span class="box">[ ]</span> Get stronger with Python</li>
+        <li><span class="box">[ ]</span> Learn the ticketing system</li>
+        <li><span class="box">[ ]</span> Learn the SOP for handling user issues</li>
+      </ul>
+    </section>
 
-        </p>
+    <footer class="foot">
+      <span>packetcat</span>
+      <span>&#10095; still learning, writing it all down</span>
+    </footer>
 
-        <h2><u>Current Goals</u></h2>
-        <p class=paragraph>I just got a job as a computer technician, so I need to work on a few things. Such as: </p>
+  </div>
+</main>
 
-        <p>
-            <ul id=p-2>
-                <li>
-                    SQL
-                </li>
-                <li>
-                    Get better at Python
-                </li>
-                <li>
-                    Learn the ticketing system
-                </li>
-                <li>
-                    Learn the SOP for dealing with user issues.
-                </li>
+<div class="status">
+  <span class="status__dot"></span>
+  <span>session: home</span>
+  <span class="status__clock" data-clock>--:--:--</span>
+</div>
 
-            </ul>
-        </p>
-
-    </body>
+<script src="script.js"></script>
+</body>
 </html>

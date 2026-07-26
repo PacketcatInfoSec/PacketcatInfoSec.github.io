@@ -1,104 +1,593 @@
+/* ==========================================================================
+   Packetcat InfoSec — shared stylesheet
+   One file drives all four pages. Edit colours in :root to re-skin the site.
+   ========================================================================== */
+
+/* --------------------------------------------------------------------------
+   1. Design tokens
+   Palette is based on "Ayu Dark", a real terminal colour scheme — so the site
+   looks like a properly configured shell rather than generic neon-on-black.
+   -------------------------------------------------------------------------- */
+:root {
+  --bg:         #0a0e14;
+  --panel:      #0f151f;
+  --panel-2:    #131b27;
+  --line:       #1e2836;
+  --line-soft:  #16202c;
+
+  --ink:        #c2ccd9;
+  --ink-strong: #e6edf5;
+  --dim:        #6b7a8d;
+
+  --amber:      #ffb454;
+  --cyan:       #5ccfe6;
+  --red:        #f07178;
+  --green:      #aad94c;
+
+  --accent:     var(--amber);
+
+  --font-mono: "IBM Plex Mono", ui-monospace, "SF Mono", Menlo, Consolas, monospace;
+  --font-sans: "IBM Plex Sans", system-ui, -apple-system, "Segoe UI", sans-serif;
+
+  --bar-h: 40px;
+  --status-h: 26px;
+  --wrap: 860px;
+  --radius: 4px;
+}
+
+/* --------------------------------------------------------------------------
+   2. Reset & base
+   -------------------------------------------------------------------------- */
+*,
+*::before,
+*::after { box-sizing: border-box; }
+
+html { scroll-behavior: smooth; }
+
 body {
-    background: linear-gradient(
-        to bottom,
-        #333 0%,
-        #333 150px,
-        transparent 150px,
-        transparent 100%
-    ); /* This is a test linear-gradient... Might need to delete*/
-   background-color: #e1e2e3;
-   color:black;
-   text-align:center;
+  margin: 0;
+  background-color: var(--bg);
+  background-image:
+    radial-gradient(1100px 420px at 50% -180px, rgba(255, 180, 84, .07), transparent 70%);
+  color: var(--ink);
+  font-family: var(--font-sans);
+  font-size: 16.5px;
+  line-height: 1.72;
+  -webkit-font-smoothing: antialiased;
+  padding-top: var(--bar-h);
+  padding-bottom: var(--status-h);
 }
 
+img { max-width: 100%; display: block; }
 
-#p-2 {
-    background-color: white;
-    text-align:left;
-    border-radius:5px;
-    padding: 25px;
-    margin: 25px;
-    font-size: 20px;
+a { color: var(--cyan); text-decoration-color: rgba(92, 207, 230, .35); text-underline-offset: 3px; }
+a:hover { text-decoration-color: var(--cyan); }
+
+:focus-visible {
+  outline: 2px solid var(--amber);
+  outline-offset: 3px;
+  border-radius: 2px;
 }
 
-#button-red {
-    color:red;
-    font-size: 20px;
+/* Skip link for keyboard and screen-reader users */
+.skip {
+  position: absolute;
+  left: -9999px;
+  top: 0;
+  background: var(--amber);
+  color: #10131a;
+  padding: 10px 16px;
+  font-family: var(--font-mono);
+  font-weight: 600;
+  z-index: 100;
+}
+.skip:focus { left: 8px; top: 8px; }
+
+/* --------------------------------------------------------------------------
+   3. Top bar — modelled on a tmux window list
+   The numbers are tmux window indices, not decoration.
+   -------------------------------------------------------------------------- */
+.tmux {
+  position: fixed;
+  inset: 0 0 auto 0;
+  height: var(--bar-h);
+  display: flex;
+  align-items: center;
+  gap: 18px;
+  padding: 0 18px;
+  background: rgba(10, 14, 20, .92);
+  backdrop-filter: blur(10px);
+  border-bottom: 1px solid var(--line);
+  font-family: var(--font-mono);
+  font-size: 12.5px;
+  z-index: 50;
 }
 
-#button-blue {
-    color:blue;
-    font-size: 20px;
+.tmux__session {
+  color: #10131a;
+  background: var(--green);
+  font-weight: 600;
+  padding: 2px 9px;
+  border-radius: 2px;
+  white-space: nowrap;
 }
 
-#footer {
-    border: 2px, solid, black;
-    border-radius:5px;
+.tmux__windows {
+  display: flex;
+  gap: 4px;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  overflow-x: auto;
+  scrollbar-width: none;
+}
+.tmux__windows::-webkit-scrollbar { display: none; }
+
+.tmux__windows a {
+  display: block;
+  padding: 3px 10px;
+  border-radius: 2px;
+  color: var(--dim);
+  text-decoration: none;
+  white-space: nowrap;
+  transition: color .15s ease, background-color .15s ease;
+}
+.tmux__windows a:hover { color: var(--ink-strong); background: var(--panel-2); }
+
+.tmux__windows a[aria-current="page"] {
+  background: var(--amber);
+  color: #10131a;
+  font-weight: 600;
 }
 
-#p-1 {
-    background-color: white;
-    border-radius:5px;
-    text-align: left;
-    padding: 5px;
-    margin: 5px;
-    font-size: 20px;
+.tmux__host {
+  margin-left: auto;
+  color: var(--dim);
+  white-space: nowrap;
 }
 
-#p-spacer {
-    font-size: 30px;
+/* --------------------------------------------------------------------------
+   4. Bottom status line
+   -------------------------------------------------------------------------- */
+.status {
+  position: fixed;
+  inset: auto 0 0 0;
+  height: var(--status-h);
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  padding: 0 18px;
+  background: var(--panel);
+  border-top: 1px solid var(--line);
+  font-family: var(--font-mono);
+  font-size: 11px;
+  color: var(--dim);
+  z-index: 50;
+}
+.status__dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--green);
+  flex: none;
+}
+.status__clock { margin-left: auto; font-variant-numeric: tabular-nums; }
 
+/* --------------------------------------------------------------------------
+   5. Layout
+   -------------------------------------------------------------------------- */
+.wrap {
+  max-width: var(--wrap);
+  margin: 0 auto;
+  padding: 0 22px;
 }
 
-.paragraph{
-    font-size: 20px;
+.block { margin: 0 0 68px; }
+.block:last-child { margin-bottom: 0; }
+
+main { padding: 56px 0 76px; }
+
+hr.rule {
+  border: 0;
+  border-top: 1px solid var(--line);
+  margin: 56px 0;
 }
 
-.packetcat{
-  color: white;
-  background-color: #333;
+/* --------------------------------------------------------------------------
+   6. Typography
+   -------------------------------------------------------------------------- */
+h1, h2, h3 {
+  font-family: var(--font-mono);
+  color: var(--ink-strong);
+  line-height: 1.25;
+  letter-spacing: -.01em;
   margin: 0;
 }
 
+.h-section {
+  font-size: 1.32rem;
+  font-weight: 600;
+  margin-bottom: 18px;
+  display: flex;
+  align-items: baseline;
+  gap: 10px;
+}
+.h-section .mark { color: var(--accent); font-weight: 500; }
 
-.tab {
-    background-color: #333;
-    width: 100%;
-    max-width: 100%;
-    padding: 10px 0;
+.eyebrow {
+  font-family: var(--font-mono);
+  font-size: 11.5px;
+  letter-spacing: .16em;
+  text-transform: uppercase;
+  color: var(--dim);
+  margin: 0 0 12px;
 }
 
-.tab-list {
-    list-style: none;
-    width: 100%;
-    max-width: 100%;
-    margin: 0;
-    padding: 0;
-    display: flex;
-    justify-content: center;
+.lede { font-size: 1.08rem; color: var(--ink); }
+
+p { margin: 0 0 18px; }
+p:last-child { margin-bottom: 0; }
+
+.prose { max-width: 68ch; }
+
+.muted { color: var(--dim); }
+
+/* --------------------------------------------------------------------------
+   7. Hero terminal
+   -------------------------------------------------------------------------- */
+.term {
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  background: linear-gradient(180deg, var(--panel-2), var(--panel));
+  overflow: hidden;
 }
 
-.tab-list li {
-    width: 100%;
-    max-width: 100%;
-    margin: 0 15px;
+.term__chrome {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 14px;
+  border-bottom: 1px solid var(--line);
+  background: rgba(0, 0, 0, .25);
+  font-family: var(--font-mono);
+  font-size: 11.5px;
+  color: var(--dim);
+}
+.term__chrome span:first-child { color: var(--green); }
+
+.term__body {
+  padding: 26px 22px 30px;
+  font-family: var(--font-mono);
 }
 
-.tab-list a {
-    text-decoration: none;
-    color: white;
-    width: 100%;
-    max-width: 100%;
-    padding: 10px 20px;
-    background-color: #333;
-    border-radius: 5px;
-    transition: background-color 0.3s;
+.term__cmd {
+  font-size: 13.5px;
+  color: var(--ink);
+  margin: 0 0 20px;
+  min-height: 1.5em;
+}
+.term__cmd .p { color: var(--green); margin-right: 8px; }
+.term__cmd .flag { color: var(--dim); }
+
+/* Blinking caret used by the typing animation */
+.caret {
+  display: inline-block;
+  width: 8px;
+  height: 1.05em;
+  background: var(--amber);
+  vertical-align: -3px;
+  animation: blink 1.05s steps(1) infinite;
+}
+@keyframes blink { 50% { opacity: 0; } }
+
+.term__name {
+  font-size: clamp(2.4rem, 8vw, 3.9rem);
+  font-weight: 600;
+  color: var(--amber);
+  letter-spacing: -.03em;
+  line-height: 1.05;
+  margin: 0 0 10px;
 }
 
-.tab-list a:hover {
-    background-color: #666;
+.term__role {
+  font-family: var(--font-mono);
+  font-size: 13.5px;
+  color: var(--dim);
+  margin: 0 0 22px;
+}
+.term__role b { color: var(--red); font-weight: 500; }
+
+.term__lede {
+  font-family: var(--font-sans);
+  max-width: 60ch;
+  margin: 0;
+  color: var(--ink);
 }
 
-.photo {
-    box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.5);
+/* --------------------------------------------------------------------------
+   8. Buttons
+   -------------------------------------------------------------------------- */
+.actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-top: 26px;
+}
+
+.btn {
+  display: inline-block;
+  font-family: var(--font-mono);
+  font-size: 12.5px;
+  font-weight: 500;
+  padding: 9px 16px;
+  border-radius: var(--radius);
+  border: 1px solid var(--line);
+  color: var(--ink);
+  background: transparent;
+  text-decoration: none;
+  cursor: pointer;
+  transition: border-color .15s ease, color .15s ease, background-color .15s ease;
+}
+.btn:hover { border-color: var(--amber); color: var(--ink-strong); }
+
+.btn--solid {
+  background: var(--amber);
+  border-color: var(--amber);
+  color: #10131a;
+  font-weight: 600;
+}
+.btn--solid:hover { background: #ffc478; border-color: #ffc478; color: #10131a; }
+
+/* --------------------------------------------------------------------------
+   9. Framed images
+   -------------------------------------------------------------------------- */
+.frame {
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  overflow: hidden;
+  background: var(--panel);
+}
+.frame img { width: 100%; height: 100%; object-fit: cover; }
+
+.frame--strip img { aspect-ratio: 1500 / 500; }
+.frame--wide img  { aspect-ratio: 16 / 6; opacity: .8; }
+
+.frame__cap {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  color: var(--dim);
+  padding: 8px 12px;
+  border-top: 1px solid var(--line);
+  background: rgba(0, 0, 0, .2);
+}
+
+/* Portrait + prose side by side on the About page */
+.bio {
+  display: grid;
+  grid-template-columns: 232px 1fr;
+  gap: 30px;
+  align-items: start;
+}
+.bio__portrait img { aspect-ratio: 1 / 1; }
+
+/* Small square icon used as a section marker */
+/* Light tile: the source icons are dark line art on a transparent
+   background, so they need a light surface to be visible. */
+.icon {
+  width: 46px;
+  height: 46px;
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  padding: 8px;
+  background: #dbe3ee;
+  flex: none;
+}
+.icon img { width: 100%; height: 100%; object-fit: contain; }
+
+.head-row {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  margin-bottom: 20px;
+}
+.head-row .h-section { margin-bottom: 0; }
+
+/* --------------------------------------------------------------------------
+   10. Chips
+   -------------------------------------------------------------------------- */
+.chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  list-style: none;
+  margin: 22px 0 0;
+  padding: 0;
+}
+.chips li {
+  font-family: var(--font-mono);
+  font-size: 11.5px;
+  color: var(--ink);
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  padding: 4px 12px;
+  background: var(--panel);
+}
+
+/* --------------------------------------------------------------------------
+   11. Red team / blue team picker — the interactive moment
+   -------------------------------------------------------------------------- */
+.teams {
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  background: var(--panel);
+  padding: 26px 24px;
+  --team: var(--dim);
+  transition: border-color .25s ease;
+}
+.teams[data-team="red"]  { --team: var(--red);  border-color: rgba(240, 113, 120, .45); }
+.teams[data-team="blue"] { --team: var(--cyan); border-color: rgba(92, 207, 230, .45); }
+
+.teams__q {
+  font-family: var(--font-mono);
+  font-size: 13px;
+  color: var(--dim);
+  margin: 0 0 16px;
+}
+
+.teams__opts { display: flex; flex-wrap: wrap; gap: 10px; margin-bottom: 20px; }
+
+.team-btn {
+  font-family: var(--font-mono);
+  font-size: 13px;
+  font-weight: 500;
+  padding: 10px 22px;
+  border-radius: var(--radius);
+  background: transparent;
+  cursor: pointer;
+  transition: background-color .18s ease, color .18s ease;
+}
+.team-btn[data-value="red"]  { border: 1px solid var(--red);  color: var(--red); }
+.team-btn[data-value="blue"] { border: 1px solid var(--cyan); color: var(--cyan); }
+.team-btn[data-value="red"]:hover  { background: rgba(240, 113, 120, .12); }
+.team-btn[data-value="blue"]:hover { background: rgba(92, 207, 230, .12); }
+.team-btn[aria-pressed="true"][data-value="red"]  { background: var(--red);  color: #10131a; }
+.team-btn[aria-pressed="true"][data-value="blue"] { background: var(--cyan); color: #10131a; }
+
+.teams__out {
+  border-left: 2px solid var(--team);
+  padding-left: 18px;
+  min-height: 84px;
+  transition: border-color .25s ease;
+}
+.teams__title {
+  font-family: var(--font-mono);
+  font-size: 13px;
+  color: var(--team);
+  margin: 0 0 8px;
+  transition: color .25s ease;
+}
+.teams__text { margin: 0; font-size: .97rem; }
+
+/* --------------------------------------------------------------------------
+   12. Goals checklist — real shell-style task boxes
+   -------------------------------------------------------------------------- */
+.tasks {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  font-family: var(--font-mono);
+  font-size: 13.5px;
+}
+.tasks li {
+  display: flex;
+  gap: 12px;
+  padding: 11px 2px;
+  border-bottom: 1px solid var(--line-soft);
+}
+.tasks li:last-child { border-bottom: 0; }
+.tasks .box { color: var(--amber); flex: none; }
+
+/* --------------------------------------------------------------------------
+   13. Link / room cards
+   -------------------------------------------------------------------------- */
+.cards { display: grid; gap: 12px; }
+
+.card {
+  display: block;
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  background: var(--panel);
+  padding: 18px 20px;
+  text-decoration: none;
+  color: inherit;
+  transition: border-color .15s ease, background-color .15s ease, transform .15s ease;
+}
+.card:hover {
+  border-color: var(--amber);
+  background: var(--panel-2);
+  transform: translateX(3px);
+}
+
+.card__top {
+  display: flex;
+  align-items: baseline;
+  gap: 12px;
+  margin-bottom: 6px;
+}
+.card__title {
+  font-family: var(--font-mono);
+  font-size: 14.5px;
+  font-weight: 600;
+  color: var(--ink-strong);
+}
+.card__tag {
+  font-family: var(--font-mono);
+  font-size: 10.5px;
+  letter-spacing: .1em;
+  text-transform: uppercase;
+  color: var(--amber);
+  border: 1px solid rgba(255, 180, 84, .35);
+  border-radius: 999px;
+  padding: 1px 9px;
+  flex: none;
+}
+.card__arrow { margin-left: auto; color: var(--dim); font-family: var(--font-mono); }
+.card:hover .card__arrow { color: var(--amber); }
+.card__desc { font-size: .94rem; color: var(--ink); margin: 0 0 8px; }
+.card__url { font-family: var(--font-mono); font-size: 11.5px; color: var(--dim); }
+
+/* Empty state — an invitation, not an apology */
+.empty {
+  border: 1px dashed var(--line);
+  border-radius: var(--radius);
+  padding: 18px 20px;
+  font-family: var(--font-mono);
+  font-size: 12.5px;
+  color: var(--dim);
+}
+
+/* --------------------------------------------------------------------------
+   14. Page footer
+   -------------------------------------------------------------------------- */
+.foot {
+  border-top: 1px solid var(--line);
+  margin-top: 76px;
+  padding-top: 22px;
+  font-family: var(--font-mono);
+  font-size: 12px;
+  color: var(--dim);
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px 20px;
+}
+
+/* --------------------------------------------------------------------------
+   15. Responsive
+   -------------------------------------------------------------------------- */
+@media (max-width: 720px) {
+  body { font-size: 16px; }
+  .bio { grid-template-columns: 1fr; }
+  .bio__portrait { max-width: 220px; }
+  .tmux { gap: 12px; padding: 0 12px; }
+  .tmux__host { display: none; }
+  .term__body { padding: 22px 16px 24px; }
+  .wrap { padding: 0 16px; }
+  .block { margin-bottom: 52px; }
+}
+
+@media (max-width: 460px) {
+  .tmux__session { display: none; }
+}
+
+/* --------------------------------------------------------------------------
+   16. Reduced motion
+   -------------------------------------------------------------------------- */
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  *, *::before, *::after {
+    animation-duration: .001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: .001ms !important;
+  }
+  .card:hover { transform: none; }
 }
