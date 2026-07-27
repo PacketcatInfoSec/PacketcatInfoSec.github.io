@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Post Studio — Packetcat</title><meta name="description" content="Write and preview Packetcat blog posts.">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=IBM+Plex+Sans:wght@400;500;600&display=swap" rel="stylesheet"><link rel="stylesheet" href="style.css">
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+<nav class="tmux" aria-label="Main"><span class="tmux__session">packetcat</span><ul class="tmux__windows"><li><a href="index.html">1:home</a></li><li><a href="about.html">2:about</a></li><li><a href="writeups.html">3:writeups</a></li><li><a href="links.html">4:links</a></li><li><a href="blog.html">5:blog</a></li><li><a href="studio.html" aria-current="page">6:studio</a></li></ul><span class="tmux__host">kali@rpi5</span></nav>
+<main id="main"><div class="wrap">
+  <section class="block"><p class="eyebrow">6:studio</p><h1 class="h-section" style="font-size:1.9rem;"><span class="mark">##</span> Post studio</h1><p class="prose">Write in Markdown, preview it as you go, then save a local post or download the publish-ready <code>.md</code> file.</p></section>
+  <section class="block studio" data-post-studio>
+    <div class="studio-auth"><span data-auth-text>Checking sign-in…</span><a class="btn btn--solid" href="/api/auth/login" data-login hidden>Sign in with GitHub</a><button class="btn" type="button" data-logout hidden>Sign out</button></div>
+    <form class="editor" data-post-form>
+      <label>Post title<input name="title" required maxlength="120" placeholder="e.g. What I learned from my first CTF"></label>
+      <label>Summary<input name="summary" maxlength="220" placeholder="A short description for the blog index."></label>
+      <label>Tags <input name="tags" maxlength="120" placeholder="TryHackMe, notes, web security"></label>
+      <label>Markdown<textarea name="body" required rows="18" spellcheck="true" placeholder="# Start writing\n\nUse Markdown for headings, lists, links, code blocks, and more."></textarea></label>
+      <div class="actions"><button class="btn btn--solid" type="submit">Save post locally</button><button class="btn" type="button" data-download-post>Download .md</button><button class="btn" type="reset">Clear</button></div>
+      <p class="form-note" data-post-message aria-live="polite">Only the authorized GitHub account can create or publish posts.</p>
+    </form>
+    <article class="preview" aria-live="polite"><p class="eyebrow">live preview</p><h2 data-preview-title>Untitled post</h2><p class="post-meta" data-preview-meta>today</p><div class="markdown" data-preview-body><p>Your post preview will appear here.</p></div></article>
+  </section>
+  <footer class="foot"><span>packetcat</span><span>&#10095; still learning, writing it all down</span></footer>
+</div></main>
+<div class="status"><span class="status__dot"></span><span>session: studio</span><span class="status__clock" data-clock>--:--:--</span></div>
+<script src="script.js"></script><script src="content.js"></script>
+</body></html>

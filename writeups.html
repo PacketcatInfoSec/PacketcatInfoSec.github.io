@@ -21,6 +21,8 @@
     <li><a href="about.html">2:about</a></li>
     <li><a href="writeups.html" aria-current="page">3:writeups</a></li>
     <li><a href="links.html">4:links</a></li>
+    <li><a href="blog.html">5:blog</a></li>
+    <li><a href="studio.html">6:studio</a></li>
   </ul>
   <span class="tmux__host">kali@rpi5</span>
 </nav>
@@ -36,7 +38,7 @@
       </div>
       <div class="prose">
         <p>TryHackMe is a beginner-friendly platform for learning cybersecurity across a wide range of topics. It's built out of rooms — virtual environments, each focused on one subject, at a range of difficulties.</p>
-        <p>Below are walkthroughs for rooms I've finished. If you're stuck on one, start here.</p>
+        <p>Below are walkthroughs for rooms I've finished. If you're stuck on one, start here. You can also import your own Markdown writeups directly in this browser.</p>
       </div>
     </section>
 
@@ -53,13 +55,17 @@
           <span class="card__url">github.com/PacketcatInfoSec/TryHackMeWriteups</span>
         </a>
 
-        <p class="empty">&#10095; more rooms in progress — new writeups land here as I clear them.</p>
+        <div data-writeup-list></div>
+        <p class="empty" data-writeup-empty>&#10095; more rooms in progress — new writeups land here as I clear them.</p>
       </div>
 
       <div class="actions">
+        <label class="btn btn--solid upload-btn" for="writeup-upload">Import Markdown writeups</label>
+        <input id="writeup-upload" class="visually-hidden" type="file" accept=".md,.markdown,text/markdown" multiple data-writeup-upload>
         <a class="btn btn--solid" href="https://github.com/PacketcatInfoSec/TryHackMeWriteups/blob/main/README.md">Browse the full writeups repo</a>
         <a class="btn" href="https://tryhackme.com/">Try TryHackMe</a>
       </div>
+      <p class="form-note" data-writeup-message>Sign in from the <a href="studio.html">Post Studio</a> with the authorized GitHub account to upload and publish Markdown writeups.</p>
     </section>
 
     <footer class="foot">
@@ -77,5 +83,6 @@
 </div>
 
 <script src="script.js"></script>
+<script src="content.js"></script>
 </body>
 </html>

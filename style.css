@@ -337,6 +337,9 @@ p:last-child { margin-bottom: 0; }
   font-weight: 600;
 }
 .btn--solid:hover { background: #ffc478; border-color: #ffc478; color: #10131a; }
+.upload-btn { cursor: pointer; }
+.visually-hidden { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0, 0, 0, 0); white-space: nowrap; border: 0; }
+.form-note { max-width: 68ch; margin-top: 14px; font-family: var(--font-mono); font-size: 11.5px; color: var(--dim); }
 
 /* --------------------------------------------------------------------------
    9. Framed images
@@ -535,6 +538,29 @@ p:last-child { margin-bottom: 0; }
 .card:hover .card__arrow { color: var(--amber); }
 .card__desc { font-size: .94rem; color: var(--ink); margin: 0 0 8px; }
 .card__url { font-family: var(--font-mono); font-size: 11.5px; color: var(--dim); }
+.card--static { color: var(--ink); }
+.card--static:hover { transform: none; }
+.content-detail { margin-top: 12px; border-top: 1px solid var(--line-soft); padding-top: 10px; }
+.content-detail summary { cursor: pointer; color: var(--cyan); font-family: var(--font-mono); font-size: 12px; }
+
+/* --------------------------------------------------------------------------
+   14. Browser-local content studio
+   -------------------------------------------------------------------------- */
+.studio { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 24px; align-items: start; }
+.studio-auth { grid-column: 1 / -1; display: flex; flex-wrap: wrap; align-items: center; gap: 12px; padding: 14px 16px; border: 1px solid var(--line); border-radius: var(--radius); background: var(--panel); font-family: var(--font-mono); font-size: 12px; color: var(--dim); }
+.editor, .preview { border: 1px solid var(--line); border-radius: var(--radius); background: var(--panel); padding: 20px; }
+.editor label { display: block; margin-bottom: 16px; color: var(--ink-strong); font-family: var(--font-mono); font-size: 12px; }
+.editor input, .editor textarea { display: block; width: 100%; margin-top: 7px; border: 1px solid var(--line); border-radius: var(--radius); background: var(--bg); color: var(--ink); padding: 10px 12px; font: 13px/1.55 var(--font-mono); }
+.editor textarea { resize: vertical; min-height: 250px; }
+.editor input:focus, .editor textarea:focus { outline: 1px solid var(--amber); border-color: var(--amber); }
+.editor .actions { margin-top: 4px; }
+.preview h2 { font-size: 1.4rem; }
+.post-meta { margin: 8px 0 20px; color: var(--dim); font-family: var(--font-mono); font-size: 11.5px; }
+.markdown { max-width: 68ch; overflow-wrap: anywhere; }
+.markdown h1, .markdown h2, .markdown h3 { margin: 1.2em 0 .5em; }
+.markdown h1 { font-size: 1.45rem; }.markdown h2 { font-size: 1.25rem; }.markdown h3 { font-size: 1.08rem; }
+.markdown ul { padding-left: 1.35em; }.markdown blockquote { margin-left: 0; padding-left: 14px; border-left: 2px solid var(--amber); color: var(--dim); }
+.markdown pre { overflow-x: auto; padding: 14px; border: 1px solid var(--line); background: var(--bg); border-radius: var(--radius); }.markdown code { font-family: var(--font-mono); font-size: .88em; }
 
 /* Empty state — an invitation, not an apology */
 .empty {
@@ -547,7 +573,7 @@ p:last-child { margin-bottom: 0; }
 }
 
 /* --------------------------------------------------------------------------
-   14. Page footer
+   15. Page footer
    -------------------------------------------------------------------------- */
 .foot {
   border-top: 1px solid var(--line);
@@ -562,7 +588,7 @@ p:last-child { margin-bottom: 0; }
 }
 
 /* --------------------------------------------------------------------------
-   15. Responsive
+   16. Responsive
    -------------------------------------------------------------------------- */
 @media (max-width: 720px) {
   body { font-size: 16px; }
@@ -573,6 +599,7 @@ p:last-child { margin-bottom: 0; }
   .term__body { padding: 22px 16px 24px; }
   .wrap { padding: 0 16px; }
   .block { margin-bottom: 52px; }
+  .studio { grid-template-columns: 1fr; }
 }
 
 @media (max-width: 460px) {
@@ -580,7 +607,7 @@ p:last-child { margin-bottom: 0; }
 }
 
 /* --------------------------------------------------------------------------
-   16. Reduced motion
+   17. Reduced motion
    -------------------------------------------------------------------------- */
 @media (prefers-reduced-motion: reduce) {
   html { scroll-behavior: auto; }

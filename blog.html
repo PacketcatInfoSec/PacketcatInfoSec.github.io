@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Blog — Packetcat</title>
+<meta name="description" content="Notes and field logs from Packetcat's cybersecurity learning journey.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=IBM+Plex+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+<nav class="tmux" aria-label="Main">
+  <span class="tmux__session">packetcat</span>
+  <ul class="tmux__windows">
+    <li><a href="index.html">1:home</a></li><li><a href="about.html">2:about</a></li><li><a href="writeups.html">3:writeups</a></li><li><a href="links.html">4:links</a></li><li><a href="blog.html" aria-current="page">5:blog</a></li><li><a href="studio.html">6:studio</a></li>
+  </ul>
+  <span class="tmux__host">kali@rpi5</span>
+</nav>
+<main id="main"><div class="wrap">
+  <section class="block">
+    <p class="eyebrow">5:blog</p>
+    <h1 class="h-section" style="font-size:1.9rem;"><span class="mark">##</span> Field notes</h1>
+    <p class="prose">Short notes from the lab, things I have learned, and the occasional deep dive. Posts created in the studio appear here on this device.</p>
+  </section>
+  <section class="block">
+    <div class="cards" data-blog-list></div>
+    <p class="empty" data-blog-empty>&#10095; no field notes yet — open the studio to write the first one.</p>
+    <div class="actions"><a class="btn btn--solid" href="studio.html">Open post studio</a></div>
+  </section>
+  <footer class="foot"><span>packetcat</span><span>&#10095; still learning, writing it all down</span></footer>
+</div></main>
+<div class="status"><span class="status__dot"></span><span>session: blog</span><span class="status__clock" data-clock>--:--:--</span></div>
+<script src="script.js"></script><script src="content.js"></script>
+</body></html>
