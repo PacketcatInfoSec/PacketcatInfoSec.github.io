@@ -5,5 +5,5 @@ pages_build_output_dir = "."
 [[d1_databases]]
 binding = "DB"
 database_name = "packetcat-content"
-database_id = "REPLACE_WITH_YOUR_D1_DATABASE_ID"
+database_id = "d54bc0e2-7cc2-4f49-9131-a1fe0d18e22c"
 migrations_dir = "migrations"
