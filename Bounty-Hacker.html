@@ -53,8 +53,7 @@
 
         <pre><code>nmap -sT -sC 10.67.182.209</code></pre>
 
-<pre>
-  <code>
+<pre><code>
   PORT   STATE SERVICE
 21/tcp open  ftp
 | ftp-anon: Anonymous FTP login allowed (FTP code 230)
@@ -75,8 +74,7 @@
 22/tcp open  ssh
 80/tcp open  http
 |_http-title: Site doesn't have a title (text/html).
-  </code>
-</pre>
+  </code></pre>
 
         <p>Since I can see that FTP is running on port 21, with anonymous access, that is the first place I will start.</p>
         <p>Logging into FTP I see two files: <code>locks.txt</code>, and <code>task.txt</code>. Let's go ahead and grab those.</p>
