@@ -8,78 +8,9 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=IBM+Plex+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+
 <style>
-  /* Reset & Base Styles */
-  * {
-    box-sizing: border-box;
-    margin: 0;
-    padding: 0;
-  }
-
-  body {
-    background-color: #0b0f19;
-    color: #e2e8f0;
-    font-family: 'IBM Plex Sans', sans-serif;
-    min-height: 100vh;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    padding-bottom: 2rem;
-  }
-
-  /* Skip link */
-  .skip {
-    position: absolute;
-    top: -40px;
-    left: 0;
-    background: #38bdf8;
-    color: #0b0f19;
-    padding: 8px;
-    z-index: 100;
-  }
-  .skip:focus {
-    top: 0;
-  }
-
-  /* Tmux Navigation Bar */
-  .tmux {
-    background-color: #1e293b;
-    font-family: 'IBM Plex Mono', monospace;
-    font-size: 0.85rem;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    padding: 0.5rem 1rem;
-    border-bottom: 1px solid #334155;
-  }
-
-  .tmux__session {
-    color: #38bdf8;
-    font-weight: 600;
-  }
-
-  .tmux__windows {
-    list-style: none;
-    display: flex;
-    gap: 1rem;
-  }
-
-  .tmux__windows a {
-    color: #94a3b8;
-    text-decoration: none;
-    padding: 0.2rem 0.4rem;
-    border-radius: 2px;
-  }
-
-  .tmux__windows a[aria-current="page"],
-  .tmux__windows a:hover {
-    background-color: #334155;
-    color: #f8fafc;
-  }
-
-  .tmux__host {
-    color: #64748b;
-  }
 
   /* Main Content Area */
   main {
@@ -96,6 +27,7 @@
     font-size: 1.5rem;
     margin-bottom: 2rem;
   }
+    -->
 
   /* Terminal Audio Player Styling */
   .terminal-player {
@@ -233,7 +165,8 @@
   .status__clock {
     margin-left: auto;
   }
-</style>
+</style> 
+
 </head>
 <body>
 
@@ -243,10 +176,11 @@
 <nav class="tmux" aria-label="Main">
   <span class="tmux__session">packetcat</span>
   <ul class="tmux__windows">
-    <li><a href="index.html" aria-current="page">1:home</a></li>
+    <li><a href="index.html">1:home</a></li>
     <li><a href="about.html">2:about</a></li>
     <li><a href="writeups.html">3:writeups</a></li>
     <li><a href="links.html">4:links</a></li>
+    <li><a href="Music-Share.html" aria-current="page">5:music</a></li>
   </ul>
   <span class="tmux__host">kali@rpi5</span>
 </nav>
